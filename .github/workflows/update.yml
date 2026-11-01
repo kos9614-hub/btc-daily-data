@@ -3,10 +3,10 @@ name: Update BTC Candle Data
 
 on:
   schedule:
-    # Daily candles: 09:15 KST
+    # Daily candle update: 09:15 KST
     - cron: '15 0 * * *'
 
-    # 4h candles: 00:15, 04:15, 08:15,
+    # 4h updates: 00:15, 04:15, 08:15,
     # 12:15, 16:15, 20:15 KST
     - cron: '15 3,7,11,15,19 * * *'
 
@@ -39,14 +39,17 @@ jobs:
       - name: Update 4-hour candles
         run: python fetch_btc_4h.py
 
+      - name: Check BTC alerts
+        run: python check_btc_alerts.py
+
       - name: Commit and push data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add btc_daily.json btc_4h.json
+          git add btc_daily.json btc_4h.json btc_alerts.json
 
           if ! git diff --cached --quiet; then
-            git commit -m "Update BTC candle data"
+            git commit -m "Update BTC candle data and alerts"
             git push
           fi
