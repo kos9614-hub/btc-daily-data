@@ -3,12 +3,12 @@ name: Update BTC Candle Data
 
 on:
   schedule:
-    # Daily check: 09:15 KST
+    # Daily candles: 09:15 KST
     - cron: '15 0 * * *'
 
-    # 4-hour candle updates: KST 01:15, 05:15,
-    # 09:15, 13:15, 17:15, 21:15
-    - cron: '15 4,8,12,16,20 * * *'
+    # 4h candles: 00:15, 04:15, 08:15,
+    # 12:15, 16:15, 20:15 KST
+    - cron: '15 3,7,11,15,19 * * *'
 
   workflow_dispatch:
 
