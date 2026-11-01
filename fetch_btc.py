@@ -1,4 +1,5 @@
 
+
 import json
 import urllib.request
 from datetime import datetime, timezone, timedelta
@@ -7,8 +8,10 @@ from pathlib import Path
 URL = "https://api.bithumb.com/v1/candles/days?market=KRW-BTC&count=200"
 KST = timezone(timedelta(hours=9))
 
+
 def main():
     now = datetime.now(KST)
+
     request = urllib.request.Request(
         URL,
         headers={"User-Agent": "BTC-Daily-Data/1.0"}
@@ -20,18 +23,17 @@ def main():
     if not isinstance(candles, list) or len(candles) < 50:
         raise ValueError("Not enough daily candles")
 
-    # Bithumb daily candles close at 09:00 KST.
-    # Exclude the candle currently in progress.
-    today = now.date()
-
     rows = []
+
     for c in candles:
         day = c["candle_date_time_kst"][:10]
-        if day >= today.isoformat() and now.hour < 9:
-            continue
-        if day > today.isoformat():
-            continue
-        if day == today.isoformat() and now.hour >= 9:
+
+        start = datetime.fromisoformat(
+            c["candle_date_time_kst"]
+        ).replace(tzinfo=KST)
+
+        # Exclude unfinished daily candles.
+        if start + timedelta(days=1) > now:
             continue
 
         rows.append({
@@ -45,7 +47,11 @@ def main():
 
     rows.sort(key=lambda x: x["date"])
 
-    dates = [datetime.fromisoformat(r["date"]).date() for r in rows]
+    dates = [
+        datetime.fromisoformat(r["date"]).date()
+        for r in rows
+    ]
+
     for a, b in zip(dates, dates[1:]):
         if (b - a).days != 1:
             raise ValueError("Missing daily candle")
@@ -69,6 +75,7 @@ def main():
     )
 
     print("Saved", len(rows), "confirmed daily candles")
+
 
 if __name__ == "__main__":
     main()
