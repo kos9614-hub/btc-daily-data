@@ -33,7 +33,7 @@ def main():
         ).replace(tzinfo=KST)
 
         # Exclude unfinished daily candles.
-        if start + timedelta(days=1, hours=9) > now:
+        if start + timedelta(days=1) > now:
             continue
 
         rows.append({
