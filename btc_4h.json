@@ -2,7 +2,7 @@
   "market": "KRW-BTC",
   "timeframe": "240m",
   "source": "https://api.bithumb.com/v1/candles/minutes/240?market=KRW-BTC&count=200",
-  "fetched_at_kst": "2026-11-10T02:40:02.075390+09:00",
+  "fetched_at_kst": "2026-11-10T03:32:59.080429+09:00",
   "last_confirmed_candle": "2026-11-09T20:00:00+09:00",
   "count": 199,
   "candles": [
