@@ -1,17 +1,15 @@
 {
   "market": "KRW-BTC",
   "timeframe": "240m",
-  "checked_at_kst": "2026-11-15T23:56:58.845941+09:00",
-  "last_candle_start_kst": "2026-11-15T16:00:00+09:00",
-  "last_candle_end_kst": "2026-11-15T20:00:00+09:00",
-  "open": 88826000,
-  "close": 90094000,
-  "change_pct": 1.428,
-  "previous_rsi14": 22.32,
-  "current_rsi14": 30.9,
-  "signals": [
-    "RSI_RECOVERY"
-  ],
-  "alert": true,
+  "checked_at_kst": "2026-11-16T00:54:05.640358+09:00",
+  "last_candle_start_kst": "2026-11-15T20:00:00+09:00",
+  "last_candle_end_kst": "2026-11-16T00:00:00+09:00",
+  "open": 90084000,
+  "close": 89274000,
+  "change_pct": -0.899,
+  "previous_rsi14": 30.9,
+  "current_rsi14": 28.71,
+  "signals": [],
+  "alert": false,
   "note": "Preliminary signals only. Daily candle confirms buy decisions."
 }
