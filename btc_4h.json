@@ -2,18 +2,10 @@
   "market": "KRW-BTC",
   "timeframe": "240m",
   "source": "https://api.bithumb.com/v1/candles/minutes/240?market=KRW-BTC&count=200",
-  "fetched_at_kst": "2026-11-18T07:37:27.077587+09:00",
-  "last_confirmed_candle": "2026-11-18T00:00:00+09:00",
+  "fetched_at_kst": "2026-11-18T08:34:15.604782+09:00",
+  "last_confirmed_candle": "2026-11-18T04:00:00+09:00",
   "count": 199,
   "candles": [
-    {
-      "date_time_kst": "2026-10-16T00:00:00+09:00",
-      "open": 110684000,
-      "high": 111611000,
-      "low": 110517000,
-      "close": 111094000,
-      "volume": 68.73229731
-    },
     {
       "date_time_kst": "2026-10-16T04:00:00+09:00",
       "open": 111098000,
@@ -1597,6 +1589,14 @@
       "low": 86535000,
       "close": 87002000,
       "volume": 135.02611476
+    },
+    {
+      "date_time_kst": "2026-11-18T04:00:00+09:00",
+      "open": 86970000,
+      "high": 88279000,
+      "low": 86840000,
+      "close": 88085000,
+      "volume": 62.78860908
     }
   ]
 }
