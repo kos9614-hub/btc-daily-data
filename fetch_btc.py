@@ -15,7 +15,7 @@ RETRY_SECONDS = 20
 
 
 def expected_last_date(now):
-    """The most recent fully closed daily candle starts at 09:00 KST."""
+    """Expected latest completed daily date at the 09:00 KST reporting cutoff."""
     today_at_nine = now.replace(hour=9, minute=0, second=0, microsecond=0)
     return (today_at_nine - timedelta(days=1 if now >= today_at_nine else 2)).date()
 
@@ -36,10 +36,13 @@ def parse_and_validate(candles, now):
     for candle in candles:
         start = datetime.fromisoformat(candle["candle_date_time_kst"])
         start = start.replace(tzinfo=KST) if start.tzinfo is None else start.astimezone(KST)
-        if start.hour != 9 or start.minute != 0 or start.second != 0:
-            raise ValueError(f"Unexpected daily candle start: {start.isoformat()}")
-        if start + timedelta(days=1) > now:
-            continue  # Ignore the daily candle still in progress.
+        # Bithumb labels daily candles with a 00:00 KST timestamp.
+        # Use the 09:00 KST reporting cutoff to select completed dates;
+        # do not interpret the API timestamp itself as a 09:00 start.
+        if start.hour != 0 or start.minute != 0 or start.second != 0:
+            raise ValueError(f"Unexpected API daily date timestamp: {start.isoformat()}")
+        if start.date() > expected_last_date(now):
+            continue  # Exclude dates beyond the reporting cutoff.
 
         row = {
             "date": start.date().isoformat(),
