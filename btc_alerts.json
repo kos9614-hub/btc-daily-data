@@ -1,7 +1,7 @@
 {
   "market": "KRW-BTC",
   "timeframe": "240m",
-  "checked_at_kst": "2026-11-28T06:39:26.525358+09:00",
+  "checked_at_kst": "2026-11-28T07:40:16.832153+09:00",
   "last_candle_start_kst": "2026-11-28T00:00:00+09:00",
   "last_candle_end_kst": "2026-11-28T04:00:00+09:00",
   "open": 80507000,
